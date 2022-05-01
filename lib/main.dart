@@ -69,7 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
           Text("Duration: ${mySpells[index].duration}"),
           Text("${mySpells[index].desc}"),
           SizedBox(height: 10,),
-          Text("At Higher Levels: ${mySpells[index].getHigherLevel()}")
+          Text("At Higher Levels: ${mySpells[index].getHigherLevel()}"),
+          ElevatedButton(onPressed: () async {
+            setState(() {
+              mySpells.clear();
+              print('remove called');
+              print(mySpells.length);
+            });
+          },
+            child: Text(
+              "Remove Spell",
+              style: TextStyle(fontSize: 20),
+            ),
+          )
         ],
       ),
     );
@@ -93,7 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return SizedBox(
       child: ElevatedButton(
         onPressed: () async {
-          // TODO: Where the code for adding a new spell to the list will go
           getDnDSpell(_newSpellTextField.text).then( (newDnDSpell) {
             print('initState ---- new spell has arrived in the future');
             setState(() {
