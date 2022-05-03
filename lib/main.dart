@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:final_personal_spellbook/dnd_spell.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -15,12 +16,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      scrollBehavior: AppScrollBehavior(),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+          scaffoldBackgroundColor: Color.fromRGBO(255, 229, 204, 10),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
 }
 
 class MyHomePage extends StatefulWidget {
@@ -72,7 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Text("At Higher Levels: ${mySpells[index].getHigherLevel()}"),
           ElevatedButton(onPressed: () async {
             setState(() {
-              mySpells.clear();
+              print(index);
+              mySpells.removeAt(index);
+              //mySpells.clear();
               print('remove called');
               print(mySpells.length);
             });
@@ -129,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Personal Spell Book"),
+          leading: Icon(Icons.book_outlined),
         ),
 
         body:
