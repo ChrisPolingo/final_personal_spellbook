@@ -104,6 +104,13 @@ class DnDSpell {
     }
   }
 
+  String getFullDesc() {
+    String fullDesc = "";
+    for (int i = 0; i < desc.length; i++) {
+      fullDesc = fullDesc + " " + desc[i];
+    }
+    return fullDesc;
+  }
 
 }
 

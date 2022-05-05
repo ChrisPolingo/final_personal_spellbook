@@ -71,31 +71,34 @@ class _MyHomePageState extends State<MyHomePage> {
   ListTile selectedSpell(int index) {
     return ListTile(
       title: Text(mySpells[index].name),
-      subtitle: Column(
-        children: [
-          Text("${mySpells[index].level}rd level ${mySpells[index].school.name}"),
-          Text("Casting Time: ${mySpells[index].castingTime}"),
-          Text("Range: ${mySpells[index].range}"),
-          Text("Components: ${mySpells[index].components}"),
-          Text("Duration: ${mySpells[index].duration}"),
-          Text("${mySpells[index].desc}"),
-          SizedBox(height: 10,),
-          Text("At Higher Levels: ${mySpells[index].getHigherLevel()}"),
-          ElevatedButton(onPressed: () async {
-            setState(() {
-              print(index);
-              mySpells.removeAt(index);
-              //mySpells.clear();
-              print('remove called');
-              print(mySpells.length);
-            });
-          },
-            child: Text(
-              "Remove Spell",
-              style: TextStyle(fontSize: 20),
+      subtitle: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("${mySpells[index].level}rd level ${mySpells[index].school.name}"),
+            Text("Casting Time: ${mySpells[index].castingTime}"),
+            Text("Range: ${mySpells[index].range}"),
+            Text("Components: ${mySpells[index].components}"),
+            Text("Duration: ${mySpells[index].duration}"),
+            Text(mySpells[index].getFullDesc()),
+            SizedBox(height: 10,),
+            Text("At Higher Levels: ${mySpells[index].getHigherLevel()}"),
+            ElevatedButton(onPressed: () async {
+              setState(() {
+                print(index);
+                mySpells.removeAt(index);
+                //mySpells.clear();
+                print('remove called');
+                print(mySpells.length);
+              });
+            },
+              child: Text(
+                "Remove Spell",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-          )
-        ],
+          SizedBox(height: 100,)
+          ],
+        ),
       ),
     );
   }
