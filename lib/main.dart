@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListTile selectedSpell(int index) {
     return ListTile(
-      title: Text(mySpells[index].name),
+      title: Text(mySpells[index].name, style: TextStyle(fontSize: 32), textAlign: TextAlign.center,),
       subtitle: SingleChildScrollView(
         child: Column(
           children: [
