@@ -95,6 +95,7 @@ class DnDSpell {
     "url": url,
   };
 
+  // A get method that only gets the higher level rules if they exists, prevents issues with null values.
   String getHigherLevel() {
     //Error checks if there is no higher level conditions for the spell
     if (higherLevel.isEmpty) {
@@ -104,6 +105,7 @@ class DnDSpell {
     }
   }
 
+  // Gets all the entries in the desc array list, adds all of them into one string, and returns it to the user.
   String getFullDesc() {
     String fullDesc = "";
     for (int i = 0; i < desc.length; i++) {

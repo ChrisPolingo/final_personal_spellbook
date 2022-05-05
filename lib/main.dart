@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Allows the app to take in inputs from a touch screen and a mouse, enables use on both phones and web browsers.
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
@@ -56,6 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
+  // This is what gets the information from the API, taking a String input, which will be the name that is applied to the URL.
+  // Returns a DnDSpell object
   Future<DnDSpell> getDnDSpell(String name) async {
     Uri url = Uri.parse("https://www.dnd5eapi.co/api/spells/" + name);
     print("getDnDSpell() about to get data");
@@ -68,6 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  // Creates and returns the ListTile that displays the spell to the user.
+  // Takes in an Integer, being the index that the user is on.
   ListTile selectedSpell(int index) {
     return ListTile(
       title: Text(mySpells[index].name, style: TextStyle(fontSize: 32), textAlign: TextAlign.center,),
@@ -103,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // This is the TextField that the user enters the spell they want to search
   Widget spellTextField() {
     return SizedBox(
       width: MediaQuery.of(context).size.width/1.7,
@@ -110,13 +116,15 @@ class _MyHomePageState extends State<MyHomePage> {
         controller: _newSpellTextField,
         style: TextStyle(fontSize: 22, color: Colors.black),
         decoration: InputDecoration(
-          hintText: "Spell",
+          hintText: "Use - istead of spaces",
           hintStyle: TextStyle(fontSize: 22, color: Colors.black),
         ),
       ),
     );
   }
 
+  // The button that the user clicks to add the spell.
+  // Calls the getDnDSpell() method
   Widget addSpellBtn() {
     return SizedBox(
       child: ElevatedButton(
